@@ -1,5 +1,5 @@
 
-let display = "";
+let equation = "";
 let firstNumber;
 let operator;
 
@@ -7,36 +7,46 @@ const numberButtons = document.querySelectorAll('.numbers');
 const opButtons = document.querySelectorAll('.operator');
 const screen = document.querySelector('#screen');
 const equalButton = document.querySelector('#equals');
+const clearButton = document.querySelector('#clear');
+
+clearButton.addEventListener('click', (button) => {
+    firstNumber = undefined;
+    operator = undefined;
+    equation = "";
+    screen.textContent = "0";
+});
 
 equalButton.addEventListener('click', (button) => {
-    display = operate(operator, firstNumber, parseFloat(display));
-    firstNumber = display;
-    operator = button.textContent;
-    screen.textContent = display;
-    display = "";
+    if (firstNumber && operator) {
+        equation = operate(operator, firstNumber, parseFloat(equation));
+        firstNumber = equation;
+        operator = button.textContent;
+        screen.textContent = equation.toFixed(12);
+        equation = "";
+    }
 });
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        display += button.textContent;
-        screen.textContent = display; 
+        equation += button.textContent;
+        screen.textContent = equation; 
     });
 });
 
 opButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (typeof operator === 'undefined') {
-            firstNumber = parseFloat(display);
+            firstNumber = parseFloat(equation);
             operator = button.textContent;
-        } else if (display == "") {
+        } else if (equation == "") {
             operator = button.textContent;
         } else {
-            display = operate(operator, firstNumber, parseFloat(display));
-            firstNumber = display;
+            equation = operate(operator, firstNumber, parseFloat(equation));
+            firstNumber = equation;
             operator = button.textContent;
-            screen.textContent = display;
+            screen.textContent = equation.toFixed(12);
         }
-        display = "";
+        equation = "";
     });
 });
 

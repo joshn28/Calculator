@@ -4,28 +4,29 @@
         <meta charset="utf-8">
         <title>Calculator</title>
         <link rel="stylesheet" href="./index.css">
-        <script src="./index.js"></script>
+        <script src="./index.js" defer></script>
     </head>
     <body>
         <div id="calculator">
-            <div id="screen"></div>
+            <div id="screen">0</div>
             <div class="keys" id="clear">C</div>
-            <div class="keys">1</div>
-            <div class="keys">2</div>
-            <div class="keys">3</div>
-            <div class="keys">/</div>
-            <div class="keys">4</div>
-            <div class="keys">5</div>
-            <div class="keys">6</div>
-            <div class="keys">-</div>
-            <div class="keys">7</div>
-            <div class="keys">8</div>
-            <div class="keys">9</div>
-            <div class="keys">*</div>
-            <div class="keys">0</div>
-            <div class="keys">.</div>
-            <div class="keys">=</div>
-            <div class="keys">+</div>
+            <div class="keys" id="delete">DEL</div>
+            <div class="keys operator" id="divide">/</div>
+            <div class="keys numbers">1</div>
+            <div class="keys numbers">2</div>
+            <div class="keys numbers">3</div>
+            <div class="keys operator" id="subtract">-</div>
+            <div class="keys numbers">4</div>
+            <div class="keys numbers">5</div>
+            <div class="keys numbers">6</div>
+            <div class="keys operator" id="multiply">*</div>
+            <div class="keys numbers">7</div>
+            <div class="keys numbers">8</div>
+            <div class="keys numbers">9</div>
+            <div class="keys numbers">0</div>
+            <div class="keys" id="decimal">.</div>
+            <div class="keys" id="equals">=</div>
+            <div class="keys operator" id="add">+</div>
         </div>
     </body>
 </html>

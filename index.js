@@ -17,13 +17,22 @@ clearButton.addEventListener('click', (button) => {
 });
 
 equalButton.addEventListener('click', (button) => {
-    if (firstNumber && operator) {
+    if (firstNumber && operator && parseFloat(equation) !== 0) {
         equation = operate(operator, firstNumber, parseFloat(equation));
         firstNumber = equation;
         operator = button.textContent;
-        screen.textContent = equation.toFixed(12);
-        equation = "";
+        if (parseFloat(equation) === parseInt(equation)) {
+            screen.textContent = equation;
+        } else {
+            screen.textContent = parseFloat(equation.toFixed(12));
+        }
+    } else {
+        alert("Can't divide by zero.")
+        firstNumber = undefined;
+        operator = undefined;
+        screen.textContent = "0";
     }
+    equation = "";
 });
 
 numberButtons.forEach((button) => {
@@ -41,10 +50,21 @@ opButtons.forEach((button) => {
         } else if (equation == "") {
             operator = button.textContent;
         } else {
-            equation = operate(operator, firstNumber, parseFloat(equation));
-            firstNumber = equation;
-            operator = button.textContent;
-            screen.textContent = equation.toFixed(12);
+            if (parseFloat(equation) === 0) {
+                alert("Can't divide by zero.")
+                firstNumber = undefined;
+                operator = undefined;
+                screen.textContent = "0";
+            } else {
+                equation = operate(operator, firstNumber, parseFloat(equation));
+                firstNumber = equation;
+                operator = button.textContent;
+                if (parseFloat(equation) === parseInt(equation)) {
+                    screen.textContent = equation;
+                } else {
+                    screen.textContent = parseFloat(equation.toFixed(12));
+                }
+            }
         }
         equation = "";
     });

@@ -9,6 +9,17 @@ const screen = document.querySelector('#screen');
 const equalButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
 const decimalButton = document.querySelector('#decimal');
+const deleteButton = document.querySelector('#delete');
+
+deleteButton.addEventListener('click', ()=> {
+    if (screen.textContent.length == 1) {
+        equation = "";
+        screen.textContent = "";
+    } else {
+        equation = equation.slice(0, equation.length-1)
+        screen.textContent = equation;
+    }
+});
 
 decimalButton.addEventListener('click', (button) => {
     if (screen.textContent.indexOf('.') === -1) {
@@ -21,7 +32,7 @@ clearButton.addEventListener('click', () => {
     firstNumber = undefined;
     operator = undefined;
     equation = "";
-    screen.textContent = "0";
+    screen.textContent = "";
 });
 
 equalButton.addEventListener('click', () => {

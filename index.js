@@ -95,48 +95,48 @@ opButtons.forEach((button) => {
     });
 });
 
-// document.addEventListener('keypress', (e) => {
-//     switch (e.key) {
-//         case "1":
-//         case "2":
-//         case "3":
-//         case "4":
-//         case "5":
-//         case "6":
-//         case "7":
-//         case "8":
-//         case "9":
-//             equation += e.key;
-//             if (equation[0] === '.') {
-//                 equation = '0' + equation;
-//             }
-//             screen.textContent = equation.slice(0, 13);
-//             break;
-//         case ".":
-//             if (screen.textContent.indexOf('.') === -1 && screen.textContent.length > 0) {
-//                 equation += e.key;
-//                 screen.textContent += e.key;
-//             }
-//             break;
-//         case "Enter":
-//             if (firstNumber && operator && equation) {
-//                 if (operator == "/" && parseFloat(equation) == 0) {
-//                     alert("Can't divide by zero.")
-//                     firstNumber = undefined;
-//                     operator = undefined;
-//                     screen.textContent = "0";
-//                 } else {
-//                     equation = operate(operator, firstNumber, parseFloat(equation));
-//                     firstNumber = equation;
-//                     if (parseFloat(equation) === parseInt(equation)) {
-//                         screen.textContent = equation.slice(0, 13);
-//                     } else {
-//                         screen.textContent = parseFloat(equation.toFixed(10).slice(0, 13));
-//                     }
-//                 }
-//             }
-//     };
-// })
+document.addEventListener('keypress', (e) => {
+    switch (e.key) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+            equation += e.key;
+            if (equation[0] === '.') {
+                equation = '0' + equation;
+            }
+            screen.textContent = equation.slice(0, 13);
+            break;
+        case ".":
+            if (screen.textContent.indexOf('.') === -1 && screen.textContent.length > 0) {
+                equation += e.key;
+                screen.textContent += e.key;
+            }
+            break;
+        case "Enter":
+            if (firstNumber && operator && equation) {
+                if (operator == "/" && parseFloat(equation) == 0) {
+                    alert("Can't divide by zero.")
+                    firstNumber = undefined;
+                    operator = undefined;
+                    screen.textContent = "0";
+                } else {
+                    equation = operate(operator, firstNumber, parseFloat(equation));
+                    firstNumber = equation;
+                    if (parseFloat(equation) === parseInt(equation)) {
+                        screen.textContent = equation.slice(0, 13);
+                    } else {
+                        screen.textContent = parseFloat(equation.toFixed(10).slice(0, 13));
+                    }
+                }
+            }
+    };
+})
 
 function add(a, b) {
     return a + b;

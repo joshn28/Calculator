@@ -8,37 +8,48 @@ const opButtons = document.querySelectorAll('.operator');
 const screen = document.querySelector('#screen');
 const equalButton = document.querySelector('#equals');
 const clearButton = document.querySelector('#clear');
+const decimalButton = document.querySelector('#decimal');
 
-clearButton.addEventListener('click', (button) => {
+decimalButton.addEventListener('click', (button) => {
+    if (screen.textContent.indexOf('.') === -1) {
+        equation += button.target.textContent;
+        screen.textContent += button.target.textContent;
+    }
+});
+
+clearButton.addEventListener('click', () => {
     firstNumber = undefined;
     operator = undefined;
     equation = "";
     screen.textContent = "0";
 });
 
-equalButton.addEventListener('click', (button) => {
-    if (firstNumber && operator && parseFloat(equation) !== 0) {
-        equation = operate(operator, firstNumber, parseFloat(equation));
-        firstNumber = equation;
-        operator = button.textContent;
-        if (parseFloat(equation) === parseInt(equation)) {
-            screen.textContent = equation;
+equalButton.addEventListener('click', () => {
+    if (firstNumber && operator && equation) {
+        if (operator == "/" && parseFloat(equation) == 0) {
+            alert("Can't divide by zero.")
+            firstNumber = undefined;
+            operator = undefined;
+            screen.textContent = "0";
         } else {
-            screen.textContent = parseFloat(equation.toFixed(12));
+            equation = operate(operator, firstNumber, parseFloat(equation));
+            firstNumber = equation;
+            if (parseFloat(equation) === parseInt(equation)) {
+                screen.textContent = equation.toString().slice(0, 13);
+            } else {
+                screen.textContent = parseFloat(equation.toFixed(10).slice(0, 13));
+            }
         }
-    } else {
-        alert("Can't divide by zero.")
-        firstNumber = undefined;
-        operator = undefined;
-        screen.textContent = "0";
     }
-    equation = "";
 });
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         equation += button.textContent;
-        screen.textContent = equation; 
+        if (equation[0] === '.') {
+            equation = '0' + equation;
+        }
+        screen.textContent = equation.toString().slice(0, 13); 
     });
 });
 
@@ -60,9 +71,9 @@ opButtons.forEach((button) => {
                 firstNumber = equation;
                 operator = button.textContent;
                 if (parseFloat(equation) === parseInt(equation)) {
-                    screen.textContent = equation;
+                    screen.textContent = equation.toString().slice(0, 13);
                 } else {
-                    screen.textContent = parseFloat(equation.toFixed(12));
+                    screen.textContent = parseFloat(equation.toFixed(10).slice(0, 13));
                 }
             }
         }

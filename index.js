@@ -128,10 +128,11 @@ document.addEventListener('keypress', (e) => {
                 } else {
                     equation = operate(operator, firstNumber, parseFloat(equation));
                     firstNumber = equation;
+                    operator = undefined;
                     if (parseFloat(equation) === parseInt(equation)) {
-                        screen.textContent = equation.slice(0, 13);
+                        screen.textContent = equation.toString().slice(0, 13);
                     } else {
-                        screen.textContent = parseFloat(equation.toFixed(10).slice(0, 13));
+                        screen.textContent = parseFloat(equation.toFixed(10).slice(0, 13)).toString();
                     }
                 }
             }

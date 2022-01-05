@@ -41,7 +41,8 @@ equalButton.addEventListener('click', () => {
             alert("Can't divide by zero.")
             firstNumber = undefined;
             operator = undefined;
-            screen.textContent = "0";
+            equation = "";
+            screen.textContent = "";
         } else {
             equation = operate(operator, firstNumber, parseFloat(equation));
             firstNumber = equation;
@@ -57,9 +58,10 @@ equalButton.addEventListener('click', () => {
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        equation += button.textContent;
-        if (equation[0] === '.') {
-            equation = '0' + equation;
+        if (equation[0] === '0' && equation.length === 1) {
+            equation = button.textContent;
+        } else {
+            equation += button.textContent;
         }
         screen.textContent = equation.slice(0, 13); 
     });
@@ -77,7 +79,7 @@ opButtons.forEach((button) => {
                 alert("Can't divide by zero.")
                 firstNumber = undefined;
                 operator = undefined;
-                screen.textContent = "0";
+                screen.textContent = "";
             } else {
                 console.log(equation)
                 equation = operate(operator, firstNumber, parseFloat(equation));
@@ -97,6 +99,7 @@ opButtons.forEach((button) => {
 
 document.addEventListener('keypress', (e) => {
     switch (e.key) {
+        case "0":
         case "1":
         case "2":
         case "3":
@@ -124,7 +127,8 @@ document.addEventListener('keypress', (e) => {
                     alert("Can't divide by zero.")
                     firstNumber = undefined;
                     operator = undefined;
-                    screen.textContent = "0";
+                    equation = "";
+                    screen.textContent = "";
                 } else {
                     equation = operate(operator, firstNumber, parseFloat(equation));
                     firstNumber = equation;
